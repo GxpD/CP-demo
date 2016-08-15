@@ -24,26 +24,30 @@ function MainScene:onCreate()
 
    cc.Label:createWithSystemFont("GP环境:"..tostring(bool), "Arial", 40)
         :move(display.cx-250, display.cy + 200)
+        :setColor(cc.c3b(255, 0, 0))
         :addTo(self)
 local x = gplay:getNetworkType()
 cc.Label:createWithSystemFont("网络类型:"..tostring(x), "Arial", 40)
         :move(display.cx+250, display.cy + 200)
+        :setColor(cc.c3b(0, 255, 0))
         :addTo(self)
 
         cc.Label:createWithSystemFont("Hello World", "Arial", 40)
         :move(display.cx, display.cy + 200)
+        :setColor(cc.c3b(0, 0, 255))
         :addTo(self)
      local button = cc.MenuItemFont:create("跳转")
+                                   :setColor(cc.c3b(0, 0, 0))
                                    :setPosition(display.cx-550, display.cy - 550)
 
      --local dir = cc.Director:getInstance()
      local function clicklisent(sender)
         -- body
-        gplay:backFromGroup("mainScene")
+        --gplay:backFromGroup("mainScene")
         local twoSnece =require("app/views/Two")
         local snece = twoSnece.create()
         if snece then
-        cc.Director:getInstance():replaceScene(snece)
+        cc.Director:getInstance():pushScene(snece)
         end
         release_print("touch clicklisent")
      end
