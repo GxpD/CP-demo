@@ -24,11 +24,15 @@ function Scene3:createLayer()
                                     :setColor(cc.c3b(0, 255, 255))                                                             
     local function back()
      	-- body
-     	cc.Director:getInstance():popScene()
+     	local Scene1 =require("app/views/Scene1")
+		        local scene = Scene1.create()
+		        if scene then
+		        cc.Director:getInstance():replaceScene(scene)
+		        end
     end
     backB:registerScriptTapHandler(back)
 
-	local function pay()
+	local function pay()--点击支付事件
      	-- body
      	local params = GplayPayParams.new();
 
@@ -45,14 +49,14 @@ function Scene3:createLayer()
 
 		gplay:pay(params, function (ret, msg)
 		    
-		    Scene3:showToast("pay:返回码："..tostring(ret)..",描述："..msg,self)
+		    Scene3:showToast("pay:返回码："..tostring(ret)..",描述："..msg,self)--显示注册结果
 		end)
     end
 	payB:registerScriptTapHandler(pay)
 
 	local mn = cc.Menu:create(backB,payB) 
 	layer:addChild(mn)
-	local bg = cc.Sprite:create("3.jpg")
+	local bg = cc.Sprite:create("3.jpg")--背景图
 	bg:setPosition(display.center)
 	layer:addChild(bg)
 	--end)

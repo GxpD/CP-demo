@@ -22,7 +22,11 @@ function Scene4:createLayer()
 
     local function back()
      	-- body
-     	cc.Director:getInstance():popScene()
+     	local Scene1 =require("app/views/Scene1")
+		        local scene = Scene1.create()
+		        if scene then
+		        cc.Director:getInstance():replaceScene(scene)
+		        end
     end
     backB:registerScriptTapHandler(back)
 
@@ -49,7 +53,7 @@ function Scene4:createLayer()
 	four:setPosition(display.center)
 
 	local bg = cc.Sprite:create("bg.jpg")
-	bg:setPosition(display.cx-300,display.cy+100)
+	bg:setPosition(display.cx-430,display.cy+100)
 	layer:addChild(four)
 	layer:addChild(bg)
 	--end)

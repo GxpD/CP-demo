@@ -19,16 +19,22 @@ function Scene2:createLayer()
 	local backB = cc.MenuItemFont:create("返回")
                                    :setPosition(display.cx-150, display.cy - 550)
                                     :setColor(cc.c3b(0, 255, 255))
+
     local ShortcutB = cc.MenuItemFont:create("创建快捷方式")
                                    :setPosition(display.cx-130, display.cy - 450)
                                     :setColor(cc.c3b(0, 255, 255))                                                            
-    local function back()
+    
+    local function back()--点击返回事件
      	-- body
-     	  cc.Director:getInstance():popScene()
+     	  local Scene1 =require("app/views/Scene1")
+		        local scene = Scene1.create()
+		        if scene then
+		        cc.Director:getInstance():replaceScene(scene)
+		        end
     end
     backB:registerScriptTapHandler(back)  
 
-    local function Shortcut()
+    local function Shortcut()--点击创建快捷方式
 		-- body
 		gplay:createShortcut(function (code,msg)
 			-- body
@@ -37,9 +43,10 @@ function Scene2:createLayer()
 	end
 	ShortcutB:registerScriptTapHandler(Shortcut)
 
+
 	local mn = cc.Menu:create(backB,ShortcutB) 
 	layer:addChild(mn)
-	local bg = cc.Sprite:create("2.jpg")
+	local bg = cc.Sprite:create("2.jpg")--背景图
 	bg:setPosition(display.center)
 	layer:addChild(bg)
 	--end)

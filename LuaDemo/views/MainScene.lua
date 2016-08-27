@@ -45,11 +45,15 @@ function MainScene:onCreate()
         :setColor(cc.c3b(0, 255, 255))
         :addTo(self)
 
-     
+    local channelID = gplay:getChannelID()
+     cc.Label:createWithSystemFont("渠道ID:"..tostring(channelID), "Arial", 40)
+        :move(display.cx+50, display.cy + 200)
+        :setColor(cc.c3b(0, 255, 255))
+        :addTo(self)
 
     gplay:preloadGroup("mainScene",function ()--加载资源包
     	-- body
-    	display.newSprite("bg.jpg")
+    	display.newSprite("bg.jpg")--背景图
         :move(display.center)
         :addTo(self)
 	display.newSprite("HelloWorld.png")
@@ -95,7 +99,7 @@ function MainScene:onCreate()
         gplay:backFromGroup("mainScene")
         gplay:preloadGroup("Scene1",function ()
         	-- body
-				
+				gplay:backFromGroup("mainScene")
                 local Scene1 =require("app/views/Scene1")
 		        local scene = Scene1.create()
 		        if scene then
